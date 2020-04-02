@@ -21,8 +21,8 @@ How do you deliver this? Here are some guidelines:
 
 * Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
 
-![Working Team](./Assets/working-APP.gif)
-![Working Team](./Assets/MyTeam-Final.png)
+![Employee Summary 1](./Assets/working-APP.gif)
+![Employee Summary 1](./Assets/MyTeam-Final.png)
 
 
 
