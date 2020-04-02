@@ -10,20 +10,79 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap" rel="stylesheet">
+    
+    <style type="text/css">
+        body {
+            font-family: font-family: 'Saira Semi Condensed', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            color: #333;
+            background-color: #efefef;
+            letter-spacing: .15em;
+        }
+
+        header {
+            background-color: rgb(73, 44, 240);
+            height: 130px;
+            margin-bottom: 45px;
+            border-bottom: 1px solid #333;
+            box-shadow: #000 0px 1px 3px;
+        }
+
+        h1 {
+            font-size: 66px;
+            font-weight: bold;
+            color: #fff;
+            margin: 0 auto;
+            padding-top: 30px;
+            text-shadow: #000 2px 2px 4px;
+        }
+
+        h2 {
+            font-size: 34px;
+            font-weight: bold;
+            color: linen;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: linen;
+        }
+
+        .card {
+            margin: 15px;
+            width: 340px;
+            box-shadow: #666 5px 5px 7px;
+
+        }
+
+        .col-md-10 {
+            margin: 0 auto;
+        }
+
+        .card-header {
+            color: #fff;
+            background-color: rgb(112, 111, 145);
+        }
+
+        .card-body {
+            background-color: linen;
+        }
+    </style>
+</head>
 </head>
 
 <body>
     <div class="container-fluid">
+        <header class="row">
+            <h1>The Team</h1>
+        </header>
         <div class="row">
-            <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
-                {{ team }}
+            <div class="col-md-10">
+                <div class="row justify-content-center">
+                    ${teamHTML}
+                </div>
             </div>
         </div>
     </div>
