@@ -21,7 +21,10 @@ How do you deliver this? Here are some guidelines:
 
 * Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
 
-![Employee Summary 1](./Assets/engine.png)
+![Employee Summary 1](Assets/working-APP.gif)
+![Employee Summary 1](Assets/MyTeam-Final.png)
+
+
 
 
 In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
