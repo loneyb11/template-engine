@@ -1,199 +1,198 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const create = require("./lib/create");
-const managerArray = [];
-const engineerArray = [];
-const internArray = [];
+const util = require("util");
+const readFromFile = util.promisify(fs.readFile);
+const writeToFile = util.promisify(fs.writeFile);
 
-promptManager = function() {
+let staff = {};
+
+
+const managerQuestions = [
+  {
+    type: "input",
+    message: "What is your manager's name?",
+    name: "name"
+  },
+  {
+    type: "input",
+    message: "What is your manager's id?",
+    name: "id"
+  },
+  {
+    type: "input",
+    message: "What is your manager's email?",
+    name: "email"
+  },
+  {
+    type: "input",
+    message: "What is your manager's office number?",
+    name: "office"
+  }
+];
+
+const nextQuestions = [
+  {
+    type: "checkbox",
+    message: "Which type of team member would you like to add next?",
+    name: "employee",
+    choices: ["Engineer", "Intern", "I'm done, thanks!"]
+  }
+];
+
+const engineerQuestions = [
+  {
+    type: "input",
+    message: "What is your engineer's name?",
+    name: "name"
+  },
+  {
+    type: "input",
+    message: "What is your engineer's id?",
+    name: "id"
+  },
+  {
+    type: "input",
+    message: "What is your engineer's email?",
+    name: "email"
+  },
+  {
+    type: "input",
+    message: "What is your engineer's GitHub username?",
+    name: "github"
+  }
+];
+const internQuestions = [
+  {
+    type: "input",
+    message: "What is your intern's name?",
+    name: "name"
+  },
+  {
+    type: "input",
+    message: "What is your intern's id?",
+    name: "id"
+  },
+  {
+    type: "input",
+    message: "What is your intern's email?",
+    name: "email"
+  },
+  {
+    type: "input",
+    message: "What is your intern's school?",
+    name: "school"
+  }
+];
+
+function addManager() {
   inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is your managers first name?",
-        validate: function(val) {
-          return /^[a-zA-Z]+$/i.test(val) || "Must only be letters!";
-        }
-      },
-      {
-        type: "input",
-        name: "idnumber",
-        message: "What is your managers id ?",
-        validate: function(val) {
-          return (
-            /^[0-9]*$/i.test(val) || "Must be a number/numbers between 0-9"
-          );
-        }
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is your managers Email?",
-        validate: function(val) {
-          return (
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(
-              val
-            ) || "Must be an email address like john@aol.com!"
-          );
-        }
-      },
-      {
-        type: "input",
-        name: "officeNumber",
-        message: "What is your managers office phone number?",
-        validate: function(val) {
-          return (
-            /^[2-9]\d{2}-\d{3}-\d{4}$/i.test(val) ||
-            "Must be a phone number in this format 123-456-7890!"
-          );
-        }
-      }
-    ])
-    .then(managerAnswers => {
-      const man = new Manager(
-        managerAnswers.name,
-        managerAnswers.idnumber,
-        managerAnswers.email,
-        managerAnswers.officeNumber
-      );
-      managerArray.push(man);
-      askForEmployee();
-    });
+    .prompt(managerQuestions)
+    .then(function (response) {
+      staff[response.id] = new Manager(response.name, response.id, response.email, response.office);
+      askNextQuestions();
+    })
 };
 
-askForEmployee = function() {
+function addEngineer() {
   inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "selection",
-        message: "What type of team member would you like to add?",
-        choices: [
-          "Engineer",
-          "Intern",
-          "I don't want to add any more team members"
-        ]
-      }
-    ])
-    .then(val => {
-      if (val.selection === "Engineer") {
-        engineerQuestions();
-      } else if (val.selection === "Intern") {
-        internQuestions();
-      } else if (
-        val.selection === "I don't want to add any more team members"
-      ) {
-        create(managerArray, internArray, engineerArray);
-      }
-    });
+    .prompt(engineerQuestions)
+    .then(function (response) {
+      staff[response.id] = new Engineer(response.name, response.id, response.email, response.github);
+      askNextQuestions();
+    })
 };
 
-internQuestions = function() {
+function addIntern() {
   inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is your intern's  first name?",
-        validate: function(val) {
-          return /^[a-zA-Z]+$/i.test(val) || "Must only be letters!";
-        }
-      },
-      {
-        type: "input",
-        name: "idnumber",
-        message: "What is your intern's ID?",
-        validate: function(val) {
-          return (
-            /^[0-9]*$/i.test(val) || "Must be a number/numbers between 0-9"
-          );
-        }
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is your intern's email?",
-        validate: function(val) {
-          return (
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(
-              val
-            ) || "Must be an email address like john@aol.com!"
-          );
-        }
-      },
-      {
-        type: "input",
-        name: "school",
-        message: "What is your intern's school?",
-        validate: function(val) {
-          return /[a-z1-9]/i.test(val) || "Must only be letters!";
-        }
-      }
-    ])
-    .then(internAnswers => {
-      const int = new Intern(
-        internAnswers.name,
-        internAnswers.idnumber,
-        internAnswers.email,
-        internAnswers.school
-      );
-      internArray.push(int);
-      askForEmployee();
-    });
+    .prompt(internQuestions)
+    .then(function (response) {
+      staff[response.id] = new Intern(response.name, response.id, response.email, response.school);
+      askNextQuestions();
+    })
 };
 
-engineerQuestions = function() {
+function askNextQuestions() {
   inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is your engineer's first name?",
-        validate: function(val) {
-          return /^[a-zA-Z]+$/i.test(val) || "Must only be letters!";
-        }
-      },
-      {
-        type: "input",
-        name: "idnumber",
-        message: "What is your engineers ID?",
-        validate: function(val) {
-          return (
-            /^[0-9]*$/i.test(val) || "Must be a number/numbers between 0-9"
-          );
-        }
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is your email?",
-        validate: function(val) {
-          return /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i.test(val);
-        }
-      },
-      {
-        type: "input",
-        name: "github",
-        message: "What is your engineers Github?",
-        validate: function(val) {
-          return /^(\w+\S+)$/i.test(val) || "Must be a Github user name!";
-        }
+    .prompt(nextQuestions)
+    .then(function (response) {
+      switch (response.employee[0]) {
+        case "Engineer":
+          addEngineer();
+          break;
+        case "Intern":
+          addIntern();
+          break;
+        case "I'm done, thanks!":
+          renderFile();
+          break;
+        default:
+          console.log("switch error")
       }
-    ])
-    .then(engineerAnswers => {
-      const eng = new Engineer(
-        engineerAnswers.name,
-        engineerAnswers.idnumber,
-        engineerAnswers.email,
-        engineerAnswers.github
-      );
-      engineerArray.push(eng);
-
-      askForEmployee();
     });
+
+  // writeToFile("../output/team.html", htmlFile).then(function () {
+  //   console.log("Successfully wrote to team.html file");
+  // });
+
 };
 
-promptManager();
+function renderFile() {
+  let body = " ";
+
+  
+  for(var key in staff) {
+      var value = staff[key];
+      body = body + value.cardTemplate();
+  }
+  
+  const header =
+  `<!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          <script src="https://kit.fontawesome.com/73a5feaf89.js" crossorigin="anonymous"></script>
+      <title>Team Profile Generator</title>
+  </head>
+  
+  <body>
+  <!-- NavBar -->
+  <div class="container-fluid">
+  <div class="jumbotron bg-dark">
+      <div class="container">
+        <h1 class="display-4 text-center text-light">My Team</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">`
+  
+  const footer = `</div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+  crossorigin="anonymous"></script>
+</body>
+</html>`
+
+writeToFile("./output/team.html", (header + body + footer)).then(function () {
+  console.log("Successfully wrote to team.html file");
+});
+
+
+};
+
+addManager();
