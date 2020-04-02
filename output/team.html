@@ -84,88 +84,81 @@
                     
 <div class="card employee-card">
     <div class="card-header">
-        <h2 class="card-title">${ manager.name }</h2>
-        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${ manager.getRole }</h3>
+        <h2 class="card-title">Ben Cook</h2>
+        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>getRole() {
+    return "Manager"
+  }</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: ${ manager.id }</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">${ manager.email }</a></li>
-            <li class="list-group-item">Office number: ${ manager.officeNumber }</li>
+            <li class="list-group-item">ID: BC6656</li>
+            <li class="list-group-item">Email: <a href="mailto:bcook@mymail.com">bcook@mymail.com</a></li>
+            <li class="list-group-item">Office number: 3323</li>
         </ul>
     </div>
 </div>
 
 <div class="card employee-card">
     <div class="card-header">
-        <h2 class="card-title">${ engineer.name }</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${ engineer.getRole }</h3>
+        <h2 class="card-title">Kevin Cook</h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>getRole() {
+    return "Engineer"
+  }</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: ${ engineer.id }</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">${ engineer.email }</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/{{ github }}" target="_blank" rel="noopener noreferrer">${ engineer.github }</a></li>
+            <li class="list-group-item">ID: KC5454</li>
+            <li class="list-group-item">Email: <a href="mailto:{{ email }}">kcook@mymail.com</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/kcook121" target="_blank" rel="noopener noreferrer">kcook121</a></li>
         </ul>
     </div>
 </div>
-
 <div class="card employee-card">
     <div class="card-header">
-        <h2 class="card-title">${ intern.name }</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${ role }</h3>
+        <h2 class="card-title">Daniel Cook </h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>getRole() {
+    return "Engineer"
+  }</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: ${ id }</li>
-            <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/${ github }" target="_blank" rel="noopener noreferrer">${ github }</a></li>
+            <li class="list-group-item">ID: DC3321</li>
+            <li class="list-group-item">Email: <a href="mailto:{{ email }}">dcook@mymail.com</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/dcook3323" target="_blank" rel="noopener noreferrer">dcook3323</a></li>
         </ul>
     </div>
 </div>
-
 <div class="card employee-card">
     <div class="card-header">
-        <h2 class="card-title">{ name }</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${ role }</h3>
+        <h2 class="card-title">Jason Cook </h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>getRole() {
+    return "Engineer"
+  }</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: { id }</li>
-            <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/${ github }" target="_blank" rel="noopener noreferrer">${ github }</a></li>
+            <li class="list-group-item">ID: JC1011</li>
+            <li class="list-group-item">Email: <a href="mailto:{{ email }}">jcook@mymail.com</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/kcook75757" target="_blank" rel="noopener noreferrer">kcook75757</a></li>
         </ul>
     </div>
 </div>
-
 <div class="card employee-card">
     <div class="card-header">
-        <h2 class="card-title">${ name }</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${ role }</h3>
+        <h2 class="card-title">Sarah Cook</h2>
+        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>getRole() {
+    return "Intern"
+      
+  }</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: ${ engineer.id }</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">{ email }</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/{{ github }}" target="_blank" rel="noopener noreferrer">{ github }</a></li>
+            <li class="list-group-item">ID: scook3334</li>
+            <li class="list-group-item">Email: <a href="mailto:scook@utsa.edu">scook@utsa.edu</a></li>
+            <li class="list-group-item">School: UTSA</li>
         </ul>
     </div>
 </div>
-
-<div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${ inter.name }</h2>
-        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${ intern.getRole }</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${ id }</li>
-            <li class="list-group-item">Email: <a href="mailto:${ email }">${ intern.email }</a></li>
-            <li class="list-group-item">School: ${ school }</li>
-        </ul>
-    </div>
-</div>
-
                 </div>
             </div>
         </div>

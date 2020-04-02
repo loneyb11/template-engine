@@ -6,14 +6,14 @@ const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 
 async function start() {
-    console.log("Let's build your team...");
+    console.log("Let's build your team...!");
 
     let teamHTML = "";
     let teamSize;
 
     await inquirer.prompt({
             type: "number",
-            message: "Enter the total number of team members...",
+            message: "Enter the number of your team members...",
             name: "numMembers"
         })
         .then((data) => {
