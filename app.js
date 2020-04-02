@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const Manager = require("./Develop/lib/Manager");
-const Intern = require("./Develop/lib/Intern");
-const Engineer = require("./Develop/lib/Engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
+const Engineer = require("./lib/Engineer");
 
 async function start() {
     console.log("Let's build your team...");
